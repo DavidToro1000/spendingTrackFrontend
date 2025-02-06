@@ -1,0 +1,45 @@
+<!-- register.component.html -->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">SpendingTrackProject</a>
+    <div class="ms-auto">
+      <button class="btn btn-secondary" (click)="goToHome()">Home page</button>
+    </div>
+  </nav>
+  
+  <div class="login-container container mt-5">
+    <h2 class="text-center mb-4">Register</h2>
+    <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+      
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" id="username" required [(ngModel)]="username" name="username" #usernameModel="ngModel" class="form-control" [class.is-invalid]="usernameModel.invalid && usernameModel.touched">
+        <div *ngIf="usernameModel.invalid && usernameModel.touched" class="invalid-feedback">
+          Username is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" required [(ngModel)]="email" name="email" #emailModel="ngModel" class="form-control" [class.is-invalid]="emailModel.invalid && emailModel.touched" email>
+        <div *ngIf="emailModel.invalid && emailModel.touched" class="invalid-feedback">
+          Email is required
+        </div>
+      </div>
+    
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" id="password" required [(ngModel)]="password" name="password" #passwordModel="ngModel" class="form-control" [class.is-invalid]="passwordModel.invalid && passwordModel.touched">
+        <div *ngIf="passwordModel.invalid && passwordModel.touched" class="invalid-feedback">
+          Password is required
+        </div>
+      </div>
+    
+      <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">Register</button>
+    </form>
+    
+    <p *ngIf="errorMessage" class="text-danger mt-3 text-center">{{ errorMessage }}</p>
+  
+    <div class="text-center mt-4">
+      <p class="mb-0">Already have an account? <a href="/login" class="text-primary">Login here</a></p>
+    </div>
+  </div>  
